@@ -1,3 +1,4 @@
+// Task 5
 interface DirectorInterface {
   workFromHome(): string;
   getCoffeeBreak(): string;
@@ -40,44 +41,13 @@ class Teacher implements TeacherInterface {
 
 function createEmployee(salary: number | string): Director | Teacher {
   const numericSalary = typeof salary === 'string' ? parseInt(salary, 10) : salary;
-
-  if (numericSalary < 500) {
-    return new Teacher();
-  }
-  return new Director();
-}
-interface DirectorInterface {
-  workFromHome(): string;
-  getCoffeeBreak(): string;
-  workDirectorTasks(): string;
-}
-
-interface TeacherInterface {
-  workFromHome(): string;
-  getCoffeeBreak(): string;
-  workTeacherTasks(): string;
-}
-
-class Director implements DirectorInterface {
-  workFromHome = () => 'Working from home';
-  getCoffeeBreak = () => 'Getting a coffee break';
-  workDirectorTasks = () => 'Getting to director tasks';
-}
-
-class Teacher implements TeacherInterface {
-  workFromHome = () => 'Cannot work from home';
-  getCoffeeBreak = () => 'Cannot have a break';
-  workTeacherTasks = () => 'Getting to work';
-}
-
-function createEmployee(salary: number | string): Director | Teacher {
-  const numericSalary = typeof salary === 'string' ? parseInt(salary, 10) : salary;
   if (numericSalary < 500) {
     return new Teacher();
   }
   return new Director();
 }
 
+// Task 6
 function isDirector(employee: Director | Teacher): employee is Director {
   return (employee as Director).workDirectorTasks !== undefined;
 }
@@ -90,8 +60,7 @@ function executeWork(employee: Director | Teacher): void {
   }
 }
 
-executeWork(createEmployee(200));
-executeWork(createEmployee(1000));
+// Task 7
 type Subjects = 'Math' | 'History';
 
 function teachClass(todayClass: Subjects): string {
@@ -100,6 +69,3 @@ function teachClass(todayClass: Subjects): string {
   }
   return 'Teaching History';
 }
-
-console.log(teachClass('Math'));
-console.log(teachClass('History'));
